@@ -1,10 +1,10 @@
+using Scrips.Logic.Animator_;
 using System;
-using CodeBase.Logic;
 using UnityEngine;
 
-namespace CodeBase.Hero
+namespace Scrips.Character
 {
-  public class HeroAnimator : MonoBehaviour, IAnimationStateReader
+    public class HeroAnimator : MonoBehaviour, IAnimationStateReader
   {
     [SerializeField] private CharacterController _characterController;
     [SerializeField] public Animator _animator;

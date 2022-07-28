@@ -6,7 +6,7 @@ using Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.Hero
+namespace Scrips.Character
 {
     public class HeroMove : MonoBehaviour, ISavedProgress
     {

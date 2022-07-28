@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scripts.Infrastructure.Services.InputService;
 
-namespace Scrips.Infrastructure
+namespace Scrips.Character
 {
     public partial class CharacterMove : MonoBehaviour, ISavedProgress
     {

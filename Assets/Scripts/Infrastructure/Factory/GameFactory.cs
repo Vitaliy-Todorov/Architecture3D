@@ -13,13 +13,21 @@ namespace Scripts.Infrastructure.Factory
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
+        public GameObject HeroGameObject { get; set; }
+
+        public event Action HeroCreated;
+
         public GameFactory(IAssetProvider assetProvider)
         {
             _assetProvider = assetProvider;
         }
 
-        public GameObject CreateCharacter(GameObject at) => 
-            InstantiateRegistered(AssetPath.CharacterPath, at.transform.position);
+        public GameObject CreateCharacter(GameObject at)
+        {
+            HeroGameObject = InstantiateRegistered(AssetPath.CharacterPath, at.transform.position);
+            HeroCreated?.Invoke();
+            return HeroGameObject;
+        }
 
         public void CreateHud() =>
             InstantiateRegistered(AssetPath.HudPath);
