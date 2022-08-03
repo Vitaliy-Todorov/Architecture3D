@@ -21,6 +21,7 @@ namespace Scrips.Enemy
                 _animator.StopMoving();
         }
 
+        //Проверяем что скорость больше минимальной и что персонаж не упёрся в цель
         private bool ShoulMove() => 
             _agent.velocity.magnitude > _minimalVelocity && _agent.remainingDistance > _agent.radius;
     }

@@ -1,5 +1,5 @@
-﻿using Scripts.Infrastructure.AssetManagement;
-using Scripts.Infrastructure.Factory;
+﻿using Scripts.Infrastructure.Services.AssetManagement;
+using Scripts.Infrastructure.Services.Factory;
 using Scripts.Infrastructure.Services;
 using Scripts.Infrastructure.Services.PersistentProgress;
 using Scrips.Infrastructure;
@@ -7,6 +7,7 @@ using System;
 using UnityEngine;
 using Scripts.Infrastructure.Services.SaveLoad;
 using Scripts.Infrastructure.Services.InputService;
+using Scripts.Infrastructure.Services.StaticData;
 
 namespace Scripts.Infrastructure.States
 {
@@ -38,6 +39,7 @@ namespace Scripts.Infrastructure.States
         private void RegisterServices()
         {
             _services.RegisterSingle<IInputService>(InputService());
+            _services.RegisterSingle<IStaticDataService>(new StaticDataService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IGameFactory>(GameFactory());
@@ -56,11 +58,12 @@ namespace Scripts.Infrastructure.States
                 throw new Exception("InputServices == null");
         }
 
-        private static GameFactory GameFactory()
+        private GameFactory GameFactory()
         {
-            IAssetProvider assetProvider = AllServices.Container.Single<IAssetProvider>();
+            IAssetProvider assetProvider = _services.Single<IAssetProvider>();
+            IStaticDataService staticData = _services.Single<IStaticDataService>();
 
-            return new GameFactory(assetProvider);
+            return new GameFactory(assetProvider, staticData);
         }
 
         private SaveLoadService SaveLoadService()

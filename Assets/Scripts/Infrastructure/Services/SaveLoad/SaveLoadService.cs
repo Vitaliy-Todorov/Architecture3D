@@ -1,5 +1,5 @@
 ﻿using Scripts.Data;
-using Scripts.Infrastructure.Factory;
+using Scripts.Infrastructure.Services.Factory;
 using Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 

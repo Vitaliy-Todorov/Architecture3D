@@ -1,4 +1,4 @@
-﻿using Scripts.Infrastructure.Factory;
+﻿using Scripts.Infrastructure.Services.Factory;
 using Scripts.Infrastructure.Services;
 using System;
 using UnityEngine;
@@ -7,30 +7,18 @@ namespace Scrips.Enemy
 {
     public class RotateToHero : Follow
     {
-        public float _speed;
+        public float _speed = 5;
 
         private Transform _heroTransform;
-        private IGameFactory _gameFactory;
-        private Vector3 _positionToLook;
 
-        private void Start()
-        {
-            _gameFactory = AllServices.Container.Single<IGameFactory>();
-
-            if (_gameFactory.HeroGameObject != null)
-                IntializeHeroTransform();
-            else
-                _gameFactory.HeroCreated += IntializeHeroTransform;
-        }
+        internal void Construct(Transform heroTransform) =>
+            _heroTransform = heroTransform;
 
         private void Update()
         {
             if (_heroTransform != null)
                 RotateTowardsHero();
         }
-
-        private void IntializeHeroTransform() =>
-            _heroTransform = _gameFactory.HeroGameObject.transform;
 
         private void RotateTowardsHero()
         {

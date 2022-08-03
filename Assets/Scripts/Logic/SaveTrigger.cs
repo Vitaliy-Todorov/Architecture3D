@@ -1,7 +1,5 @@
 using Scripts.Infrastructure.Services;
 using Scripts.Infrastructure.Services.SaveLoad;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scrips.Logic

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Scrips.Enemy
 {
-    [RequireComponent(typeof(Attack))]
+    [RequireComponent(typeof(EnemyAttack))]
     public class CheckAttackRange : MonoBehaviour
     {
-        public Attack _attack;
+        public EnemyAttack _attack;
         public TriggerObserver _triggerObserver;
 
         private void Start()
@@ -19,12 +19,12 @@ namespace Scrips.Enemy
 
         private void TriggerExit(Collider obj)
         {
-            _attack.EnableAttack();
+            _attack.DisableAttack();
         }
 
         private void TriggerEnter(Collider obj)
         {
-            _attack.DisableAttack();
+            _attack.EnableAttack();
         }
     }
 }

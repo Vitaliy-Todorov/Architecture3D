@@ -6,13 +6,14 @@ namespace Scrips.Enemy
 {
     public class EnemyAnimator : MonoBehaviour
     {
-        private static readonly int _attack = Animator.StringToHash("Attack_1");
-        private static readonly int _speed = Animator.StringToHash("Speed");
-        private static readonly int _isMoving = Animator.StringToHash("IsMoving");
-        private static readonly int _hit = Animator.StringToHash("Hit");
-        private static readonly int _die = Animator.StringToHash("Die");
+        // Название тригеров
+        private static readonly int _attackParameters = Animator.StringToHash("Attack_1");
+        private static readonly int _speedParameters = Animator.StringToHash("Speed");
+        private static readonly int _isMovingParameters = Animator.StringToHash("IsMoving");
+        private static readonly int _hitParameters = Animator.StringToHash("Hit");
+        private static readonly int _dieParameters = Animator.StringToHash("Die");
 
-
+        // Название анимаций
         private static readonly int _idleStateHash = Animator.StringToHash("idle");
         private static readonly int _attackStatHash = Animator.StringToHash("attack01");
         private static readonly int _walkingStateHash = Animator.StringToHash("Move");
@@ -28,17 +29,17 @@ namespace Scrips.Enemy
         private void Awake() =>
             _animator = GetComponent<Animator>();
 
-        public void PlayHit() => _animator.SetTrigger(_hit);
-        public void PlayDeath() => _animator.SetTrigger(_die);
+        public void PlayHit() => _animator.SetTrigger(_hitParameters);
+        public void PlayDeath() => _animator.SetTrigger(_dieParameters);
 
         public void Move(float speed)
         {
-            _animator.SetBool(_isMoving, true);
-            _animator.SetFloat(_speed, speed);
+            _animator.SetBool(_isMovingParameters, true);
+            _animator.SetFloat(_speedParameters, speed);
         }
 
-        public void StopMoving() => _animator.SetBool(_isMoving, false);
-        public void PlayAttack() => _animator.SetTrigger(_attack);
+        public void StopMoving() => _animator.SetBool(_isMovingParameters, false);
+        public void PlayAttack() => _animator.SetTrigger(_attackParameters);
 
         public void EnteredState(int stateHash)
         {
@@ -63,7 +64,6 @@ namespace Scrips.Enemy
                 state = AnimatorState.Died;
             else
                 state = AnimatorState.Unknown;
-
 
             return state;
         }

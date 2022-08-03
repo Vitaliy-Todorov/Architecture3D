@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - InitialPoint
+  - FxTemporaire
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - 
   - Player
   - Aggro
-  - 
-  - 
+  - AttackZone
+  - Hittable
   - 
   - 
   - 

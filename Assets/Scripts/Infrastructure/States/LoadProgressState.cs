@@ -35,7 +35,16 @@ namespace Scripts.Infrastructure.States
             _ = _progressService.Progress;
         }
 
-        private PlayerProgress NewProgress() => 
-            new PlayerProgress("Main");
+        private PlayerProgress NewProgress()
+        {
+            PlayerProgress playerProgress = new PlayerProgress("Main");
+
+            playerProgress.HeroState.MaxHP = 50;
+            playerProgress.HeroStats.Damage = 15f;
+            playerProgress.HeroStats.DamageRadius = 0.5f;
+            playerProgress.HeroState.ResetHP();
+
+            return playerProgress;
+        }
     }
 }
