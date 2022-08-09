@@ -13,6 +13,10 @@ namespace Scripts.UI.Windows
         }
 
         protected void OnAwake() =>
-            CloseButton.onClick.AddListener(() => Destroy(gameObject));
+            CloseButton.onClick.AddListener(() => Destroy());
+        private void Destroy()
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -46,12 +46,12 @@ namespace Scripts.Infrastructure.States
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
 
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-            _services.RegisterSingle<ISaveLoadService>(SaveLoadService());
 
             _services.RegisterSingle<IUIFactory>(UIFactory());
             _services.RegisterSingle<IWindowService>(WindowService());
             
             _services.RegisterSingle<IGameFactory>(GameFactory());
+            _services.RegisterSingle<ISaveLoadService>(SaveLoadService());
         }
 
         public void Exit()
