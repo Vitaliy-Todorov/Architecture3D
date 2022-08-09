@@ -3,30 +3,38 @@ using Scrips.Infrastructure;
 using Scrips.Logic;
 using Scripts.CameraLogic;
 using UnityEngine;
-using System;
 using Scripts.Infrastructure.Services.PersistentProgress;
-using Scripts.UI;
 using Scrips.Character;
+using Scripts.Data;
+using Scripts.Infrastructure.Services.StaticData;
+using UnityEngine.SceneManagement;
+using Scripts.UI.Elements;
+using System;
+using Scripts.UI.Services.Factory;
 
 namespace Scripts.Infrastructure.States
 {
     internal class LoadLeveStatr : IPlaylaodedState<string>
     {
         private const string InitialPointTag = "InitialPoint";
-        private const string EnemySpawner = "EnemySpawner";
+
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
         private readonly IGameFactory _gameFactory;
         private readonly IPersistentProgressService _persistentProgressService;
+        private readonly IStaticDataService _staticData;
+        private readonly IUIFactory _uiFactory;
 
-        public LoadLeveStatr(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, IGameFactory gameFactory, IPersistentProgressService persistentProgressService)
+        public LoadLeveStatr(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, IGameFactory gameFactory, IPersistentProgressService persistentProgressService, IStaticDataService staticData, IUIFactory uiFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _curtain = curtain;
             _gameFactory = gameFactory;
             _persistentProgressService = persistentProgressService;
+            _staticData = staticData;
+            _uiFactory = uiFactory;
         }
 
         public void Enter(string sceneName)
@@ -41,27 +49,40 @@ namespace Scripts.Infrastructure.States
 
         private void OnLoaded()
         {
+            InitUIRoot();
             InitGameWord();
             InformProgressReaders();
 
             _stateMachine.Enter<GameLoopState>();
         }
 
+        private void InitUIRoot() => 
+            _uiFactory.CreateUIRoot();
+
         private void InitGameWord()
         {
-            InitSpawner();
+            InitSpawnerLoot();
+            InitSpawnerEnemy();
             GameObject character = CreateCharacter();
 
             CreateHud(character);
             CameraFllow(character);
         }
 
-        private void InitSpawner()
+        private void InitSpawnerLoot()
         {
-            foreach( GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawner))
+            foreach(Loot loot in _persistentProgressService.Progress.LootsOnMap)
+                _gameFactory.CreateLoot(loot);
+        }
+
+        private void InitSpawnerEnemy()
+        {
+            string sceneKey = SceneManager.GetActiveScene().name;
+            LevelStaticData levelData = _staticData.ForLevel(sceneKey);
+
+            foreach(EnemySpawnerData spawnerData in levelData.EnemySpawner)
             {
-                EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
-                _gameFactory.Register(spawner);
+                _gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonstrTypeId);
             }
         }
 

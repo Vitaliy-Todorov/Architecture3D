@@ -1,4 +1,6 @@
+
 using System;
+using System.Collections.Generic;
 
 namespace Scripts.Data
 {
@@ -9,6 +11,7 @@ namespace Scripts.Data
         public Stats HeroStats;
         public WorldData WorldData;
         public KillData KillData;
+        public List<Loot> LootsOnMap;
 
         public PlayerProgress(string initialLevel)
         {
@@ -16,6 +19,7 @@ namespace Scripts.Data
             HeroState = new State();
             HeroStats = new Stats();
             KillData = new KillData();
+            LootsOnMap = new List<Loot>();
         }
     }
 }

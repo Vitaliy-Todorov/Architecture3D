@@ -1,6 +1,7 @@
-﻿using Scripts.Infrastructure.Services.PersistentProgress;
+﻿using Scripts.Data;
+using Scripts.Infrastructure.Services.PersistentProgress;
+using Scripts.Loots;
 using Scripts.StaticData;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +16,10 @@ namespace Scripts.Infrastructure.Services.Factory
 
         GameObject CreateHud();
         GameObject CreateCharacter(GameObject at);
+        void CreateSpawner(Vector3 at, string spawnerId, MonsterTypeId monstrTypeId);
         GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
-
+        LootPiece CreateLoot();
+        LootPiece CreateLoot(Loot loot);
         void Cleanup();
-        void Register(ISavedProgressReader savedProgress);
     }
 }

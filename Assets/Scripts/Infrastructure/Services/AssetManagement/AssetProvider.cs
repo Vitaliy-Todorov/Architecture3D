@@ -10,7 +10,7 @@ namespace Scripts.Infrastructure.Services.AssetManagement
             return Object.Instantiate(prefab);
         }
 
-        public GameObject Intantiate(string path, Vector2 at)
+        public GameObject Intantiate(string path, Vector3 at)
         {
             GameObject prefab = Resources.Load<GameObject>(path);
             return Object.Instantiate(prefab, at, Quaternion.identity);

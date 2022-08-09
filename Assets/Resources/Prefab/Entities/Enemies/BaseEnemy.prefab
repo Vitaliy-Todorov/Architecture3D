@@ -173,7 +173,6 @@ GameObject:
   - component: {fileID: 8762986869735587529}
   - component: {fileID: 2347890108890976652}
   - component: {fileID: 5912803844463371642}
-  - component: {fileID: 2108511148537784554}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -263,19 +262,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2108511148537784554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5224085720642295835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe83d8bac8e9af4ebf27041b7b3f092, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _imegeCurrent: {fileID: 2252219939128044692}
 --- !u!1 &6817496886665479635
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +358,7 @@ GameObject:
   - component: {fileID: 5860932893496086046}
   - component: {fileID: 3652688803894952085}
   - component: {fileID: 1636444262110495173}
-  - component: {fileID: 6772715887199785720}
+  - component: {fileID: 1712685367744207054}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -415,49 +401,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: '
-
-    Transform ''Head'' has been deleted
-
-    Transform ''Hand_L''
-    has been deleted
-
-    Transform ''Lower_Arm_L'' has been deleted
-
-    Transform
-    ''Upper_Arm_L'' has been deleted
-
-    Transform ''Hand_R'' has been deleted
-
-    Transform
-    ''Rower_Arm_R'' has been deleted
-
-    Transform ''Upper_Arm_R'' has been deleted
-
-    Transform
-    ''Spine'' has been deleted
-
-    Transform ''Toes_L'' has been deleted
-
-    Transform
-    ''Foot_L'' has been deleted
-
-    Transform ''Lower_Leg_L'' has been deleted
-
-    Transform
-    ''Upper_Leg_L'' has been deleted
-
-    Transform ''Toes_R'' has been deleted
-
-    Transform
-    ''Foot_R'' has been deleted
-
-    Transform ''Rower_Reg_R'' has been deleted
-
-    Transform
-    ''Upper_Reg_R'' has been deleted
-
-    Transform ''Hips'' has been deleted'
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -612,7 +556,7 @@ MonoBehaviour:
   _health: {fileID: 3652688803894952085}
   _animator: {fileID: -202433563239865895}
   _deathFx: {fileID: 100004, guid: 5db408ed7b92eea4d8d635b75ccb2774, type: 3}
---- !u!114 &6772715887199785720
+--- !u!114 &1712685367744207054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -621,10 +565,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7765843933740166503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9124dc497cd446e42ad6df4019a34412, type: 3}
+  m_Script: {fileID: 11500000, guid: 89d497ebf97d44248a410bfa8d3790a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hpBar: {fileID: 2108511148537784554}
+  _hpBar: {fileID: 3946397400903820318}
 --- !u!1 &7845175545813713009
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +579,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5305085277355894991}
   - component: {fileID: 5976683764479360336}
+  - component: {fileID: 3946397400903820318}
+  - component: {fileID: 8335846638115978269}
   m_Layer: 5
   m_Name: HPBar
   m_TagString: Untagged
@@ -672,6 +618,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7845175545813713009}
   m_CullTransparentMesh: 1
+--- !u!114 &3946397400903820318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845175545813713009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639d1107b8edbe641b8b79592a02346c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imegeCurrent: {fileID: 2252219939128044692}
+--- !u!114 &8335846638115978269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845175545813713009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2c82553348153429468155675460b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8225890106640958011
 GameObject:
   m_ObjectHideFlags: 0

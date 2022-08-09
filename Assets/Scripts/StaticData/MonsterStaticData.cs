@@ -2,7 +2,7 @@
 
 namespace Scripts.StaticData
 {
-    [CreateAssetMenu(fileName = "MonsterData", menuName = "Static/Monster")]
+    [CreateAssetMenu(fileName = "MonsterData", menuName = "StaticData/Monster")]
     public class MonsterStaticData : ScriptableObject
     {
         public MonsterTypeId MonsterTypeId;
@@ -13,6 +13,8 @@ namespace Scripts.StaticData
         [Range(1, 10)]
         public float MoveSpeed;
 
+        public int MinLoot;
+        public int MaxLoot;
 
         [Range(.5f, 2)]
         public float EffectiveDistance;
