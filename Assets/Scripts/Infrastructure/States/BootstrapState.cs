@@ -89,7 +89,8 @@ namespace Scripts.Infrastructure.States
         {
             IAssetProvider assetProvider = _services.Single<IAssetProvider>();
             IStaticDataService staticData = _services.Single<IStaticDataService>();
-            return new UIFactory(assetProvider, staticData);
+            IPersistentProgressService progressService = _services.Single<IPersistentProgressService>();
+            return new UIFactory(assetProvider, staticData, progressService);
         }
 
         private WindowService WindowService()

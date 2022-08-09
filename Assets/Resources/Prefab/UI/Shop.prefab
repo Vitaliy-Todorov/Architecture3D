@@ -475,6 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CloseButton: {fileID: 6602827060421774329}
+  SkullText: {fileID: 6601751428030889553}
 --- !u!1 &5096154562965641507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1446,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 32.3
   m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 1
