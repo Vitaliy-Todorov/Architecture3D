@@ -22,7 +22,7 @@ namespace Scripts.Infrastructure.Services.Factory
         private IAssetProvider _assetProvider;
         private IStaticDataService _staticData;
         private IRandomService _random;
-        IPersistentProgressService _progressService;
+        private IPersistentProgressService _progressService;
         private IWindowService _windowService;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();

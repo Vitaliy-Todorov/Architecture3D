@@ -1,5 +1,4 @@
-﻿using Scripts.UI.Elements;
-using Scripts.Logic;
+﻿using Scripts.Logic;
 using UnityEngine;
 
 namespace Scripts.UI.Elements

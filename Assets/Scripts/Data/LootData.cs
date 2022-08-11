@@ -13,5 +13,11 @@ namespace Scripts.Data
             Collected += loot.Value;
             Changed?.Invoke();
         }
+
+        internal void Add(int loot)
+        {
+            Collected += loot;
+            Changed?.Invoke();
+        }
     }
 }

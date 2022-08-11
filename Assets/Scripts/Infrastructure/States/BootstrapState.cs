@@ -11,6 +11,7 @@ using Scripts.Infrastructure.Services.StaticData;
 using Scripts.Infrastructure.Services.Randomizer;
 using Scripts.UI.Services.Factory;
 using Scripts.UI.Services.Windows;
+using Scripts.Infrastructure.Services.Ads;
 
 namespace Scripts.Infrastructure.States
 {
@@ -39,6 +40,8 @@ namespace Scripts.Infrastructure.States
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IAdsService>(AdsServisece());
+
             _services.RegisterSingle<IRandomService>(new RandomService());
 
             _services.RegisterSingle<IInputService>(InputService());
@@ -52,6 +55,14 @@ namespace Scripts.Infrastructure.States
             
             _services.RegisterSingle<IGameFactory>(GameFactory());
             _services.RegisterSingle<ISaveLoadService>(SaveLoadService());
+        }
+
+        private IAdsService AdsServisece()
+        {
+            IAdsService adsService = new AdsService();
+            adsService.Initialize();
+
+            return adsService;
         }
 
         public void Exit()
@@ -89,8 +100,10 @@ namespace Scripts.Infrastructure.States
         {
             IAssetProvider assetProvider = _services.Single<IAssetProvider>();
             IStaticDataService staticData = _services.Single<IStaticDataService>();
+            IAdsService adsService = _services.Single<IAdsService>();
             IPersistentProgressService progressService = _services.Single<IPersistentProgressService>();
-            return new UIFactory(assetProvider, staticData, progressService);
+
+            return new UIFactory(assetProvider, staticData, adsService, progressService);
         }
 
         private WindowService WindowService()
