@@ -40,6 +40,7 @@ namespace Scripts.Infrastructure.States
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
             _services.RegisterSingle<IAdsService>(AdsServisece());
 
             _services.RegisterSingle<IRandomService>(new RandomService());

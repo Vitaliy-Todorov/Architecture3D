@@ -11,12 +11,14 @@ using UnityEngine.SceneManagement;
 using Scripts.UI.Elements;
 using System;
 using Scripts.UI.Services.Factory;
+using Scrips.Logic.EnemySpawner;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Scripts.Infrastructure.States
 {
     internal class LoadLeveStatr : IPlaylaodedState<string>
     {
-        private const string InitialPointTag = "InitialPoint";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -61,12 +63,23 @@ namespace Scripts.Infrastructure.States
 
         private void InitGameWord()
         {
+            InitLevelTransferTrigger(LevelStaticData());
             InitSpawnerLoot();
-            InitSpawnerEnemy();
-            GameObject character = CreateCharacter();
+            InitSpawnerEnemy(LevelStaticData());
+            GameObject character = CreateCharacter(LevelStaticData());
 
             CreateHud(character);
             CameraFllow(character);
+        }
+
+        private void InitLevelTransferTrigger(LevelStaticData levelData)
+        {
+            List<LevelTransferTrigger> levelTransferTriggers =
+                GameObject.FindObjectsOfType<LevelTransferTrigger>()
+                .ToList();
+
+            foreach (LevelTransferTrigger transferTrigger in levelTransferTriggers)
+                transferTrigger.Construct(_stateMachine);
         }
 
         private void InitSpawnerLoot()
@@ -75,15 +88,10 @@ namespace Scripts.Infrastructure.States
                 _gameFactory.CreateLoot(loot);
         }
 
-        private void InitSpawnerEnemy()
+        private void InitSpawnerEnemy(LevelStaticData levelData)
         {
-            string sceneKey = SceneManager.GetActiveScene().name;
-            LevelStaticData levelData = _staticData.ForLevel(sceneKey);
-
-            foreach(EnemySpawnerData spawnerData in levelData.EnemySpawner)
-            {
+            foreach (EnemySpawnerData spawnerData in levelData.EnemySpawner)
                 _gameFactory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonstrTypeId);
-            }
         }
 
         private void InformProgressReaders()
@@ -92,12 +100,8 @@ namespace Scripts.Infrastructure.States
                 progressReader.LoadProgress(_persistentProgressService.Progress);
         }
 
-        private GameObject CreateCharacter()
-        {
-            GameObject initialPoint = GameObject.FindWithTag(InitialPointTag);
-            GameObject character = _gameFactory.CreateCharacter(at: initialPoint);
-            return character;
-        }
+        private GameObject CreateCharacter(LevelStaticData levelStaticData) => 
+            _gameFactory.CreateCharacter(at: levelStaticData.InitialHeroPosition);
 
         private GameObject CreateHud(GameObject character)
         {
@@ -106,6 +110,12 @@ namespace Scripts.Infrastructure.States
             hud.GetComponentInChildren<ActorUI>()
                 .Construct(heroHealth);
             return hud;
+        }
+
+        private LevelStaticData LevelStaticData()
+        {
+            string sceneKey = SceneManager.GetActiveScene().name;
+            return _staticData.ForLevel(sceneKey);
         }
 
         private static void CameraFllow(GameObject character)

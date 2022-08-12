@@ -8,6 +8,10 @@ namespace Scripts.Data
         public string Level;
         public Vector3Data Position;
 
+        public PositionOnLevel()
+        {
+        }
+
         public PositionOnLevel(string initialLevel)
         {
             Level = initialLevel;

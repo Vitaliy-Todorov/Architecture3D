@@ -15,11 +15,11 @@ namespace Scripts.Infrastructure.Services.Factory
         GameObject HeroGameObject { get; set; }
 
         GameObject CreateHud();
-        GameObject CreateCharacter(GameObject at);
+        GameObject CreateCharacter(Vector3 at);
         void CreateSpawner(Vector3 at, string spawnerId, MonsterTypeId monstrTypeId);
         GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
         LootPiece CreateLoot();
-        LootPiece CreateLoot(Loot loot);
+        void CreateLoot(Loot loot);
         void Cleanup();
     }
 }

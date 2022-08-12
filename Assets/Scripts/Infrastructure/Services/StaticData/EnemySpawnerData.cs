@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Scripts.Infrastructure.Services.StaticData
 {
     [Serializable]
-    public class EnemySpawnerData
+    public partial class EnemySpawnerData
     {
         public string Id;
         public MonsterTypeId MonstrTypeId;

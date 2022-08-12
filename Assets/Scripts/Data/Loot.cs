@@ -9,5 +9,10 @@ namespace Scripts.Data
         public int Value;
 
         public PositionOnLevel PositionOnLevel;
+
+        public Loot()
+        {
+            PositionOnLevel = new PositionOnLevel();
+        }
     }
 }

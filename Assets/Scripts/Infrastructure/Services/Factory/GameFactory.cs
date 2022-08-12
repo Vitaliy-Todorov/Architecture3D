@@ -14,6 +14,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Assets.Scripts.UI.Elements;
 using Scripts.UI.Services.Windows;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Infrastructure.Services.Factory
 {
@@ -52,9 +53,9 @@ namespace Scripts.Infrastructure.Services.Factory
             return hud;
         }
 
-        public GameObject CreateCharacter(GameObject at)
+        public GameObject CreateCharacter(Vector3 at)
         {
-            HeroGameObject = InstantiateRegistered(AssetPath.CharacterPath, at.transform.position);
+            HeroGameObject = InstantiateRegistered(AssetPath.CharacterPath, at);
             return HeroGameObject;
         }
 
@@ -110,16 +111,17 @@ namespace Scripts.Infrastructure.Services.Factory
             return lootPiece;
         }
 
-        public LootPiece CreateLoot(Loot loot)
+        public void CreateLoot(Loot loot)
         {
+            if (loot.PositionOnLevel.Level != SceneManager.GetActiveScene().name)
+                return;
+
             Vector3 position = loot.PositionOnLevel.Position.AsUnityVector();
             LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot, position).
                 GetComponent<LootPiece>();
 
             lootPiece.Construct(_progressService.Progress);
             lootPiece.Initialize(loot);
-
-            return lootPiece;
         }
 
         public void Cleanup()

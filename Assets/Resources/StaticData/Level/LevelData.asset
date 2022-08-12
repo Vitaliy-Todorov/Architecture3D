@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyLevel: Main
   EnemySpawner:
-  - Id: Main_bd192589-3e00-44bf-a01f-6c2404663125
-    MonstrTypeId: 10
-    Position: {x: 11.97, y: 0, z: -0.15}
   - Id: _21b135df-dc19-4067-9ffb-65049e92cf21
     MonstrTypeId: 0
     Position: {x: -0.16, y: 0, z: -1.714845}
   - Id: Main_4454925e-6d54-4e2c-95dc-2fd5cbfb036e
     MonstrTypeId: 0
     Position: {x: 12.15, y: 0, z: 3.33}
+  - Id: Main_bd192589-3e00-44bf-a01f-6c2404663125
+    MonstrTypeId: 10
+    Position: {x: 11.97, y: 0, z: -0.15}
+  InitialHeroPosition: {x: 5.3, y: 0, z: -3.4}

@@ -11,7 +11,7 @@ using Scripts.UI.Services.Factory;
 
 namespace Scripts.Infrastructure.States
 {
-    public class GameStateMachine
+    public class GameStateMachine : IGameStateMachine
     {
         private Dictionary<Type, IExitablState> _states;
         private IExitablState _activeState;
@@ -21,7 +21,7 @@ namespace Scripts.Infrastructure.States
             _states = new Dictionary<Type, IExitablState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
-                [typeof(LoadLeveStatr)] = new LoadLeveStatr(this, sceneLoader, curtain, services.Single<IGameFactory>(), 
+                [typeof(LoadLeveStatr)] = new LoadLeveStatr(this, sceneLoader, curtain, services.Single<IGameFactory>(),
                     services.Single<IPersistentProgressService>(), services.Single<IStaticDataService>(), services.Single<IUIFactory>()),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IPersistentProgressService>(), services.Single<ISaveLoadService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),

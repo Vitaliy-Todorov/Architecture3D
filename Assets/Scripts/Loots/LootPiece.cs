@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.Loots
 {
@@ -71,6 +72,8 @@ namespace Scripts.Loots
             if (_playerProgress.LootsOnMap.Any(loot => loot.Id == _loot.Id))
                 return;
 
+            _loot.PositionOnLevel.Level = SceneManager.GetActiveScene().name;
+            _loot.PositionOnLevel.Position = transform.position.AsVectorData();
             _playerProgress.LootsOnMap.Add(_loot);
         }
 

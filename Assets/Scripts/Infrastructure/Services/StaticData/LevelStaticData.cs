@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Scrips.Logic.EnemySpawner;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scripts.Infrastructure.Services.StaticData
@@ -8,5 +9,6 @@ namespace Scripts.Infrastructure.Services.StaticData
     {
         public string KeyLevel;
         public List<EnemySpawnerData> EnemySpawner;
+        public Vector3 InitialHeroPosition;
     }
 }
