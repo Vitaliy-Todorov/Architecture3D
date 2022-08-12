@@ -15,6 +15,7 @@ using UnityEngine.AI;
 using Assets.Scripts.UI.Elements;
 using Scripts.UI.Services.Windows;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 namespace Scripts.Infrastructure.Services.Factory
 {
@@ -70,10 +71,13 @@ namespace Scripts.Infrastructure.Services.Factory
             spawner._monsterTypeId = monstrTypeId;
         }
 
-        public GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent)
+        public async Task<GameObject> CreateMonster(MonsterTypeId monsterTypeId, Transform parent)
         {
             MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
-            GameObject monster = GameObject.Instantiate(monsterData.Prefab, parent.position, Quaternion.identity, parent);
+
+            GameObject prefab = await _assetProvider.Load<GameObject>(monsterData.PrefabReference);
+
+            GameObject monster = GameObject.Instantiate(prefab, parent.position, Quaternion.identity, parent);
 
             IHealth health = monster.GetComponent<IHealth>();
             health.Current = monsterData.Hp;

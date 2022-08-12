@@ -1,5 +1,7 @@
 ﻿using Scripts.Infrastructure.Services;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Scripts.Infrastructure.Services.AssetManagement
 {
@@ -7,5 +9,7 @@ namespace Scripts.Infrastructure.Services.AssetManagement
     {
         GameObject Intantiate(string path);
         GameObject Intantiate(string path, Vector3 at);
+        Task<T> Load<T>(AssetReference assetReference) where T : class;
+        void CleanUp();
     }
 }

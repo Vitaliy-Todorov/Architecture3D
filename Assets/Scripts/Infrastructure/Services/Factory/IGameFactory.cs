@@ -3,6 +3,7 @@ using Scripts.Infrastructure.Services.PersistentProgress;
 using Scripts.Loots;
 using Scripts.StaticData;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Scripts.Infrastructure.Services.Factory
@@ -17,7 +18,7 @@ namespace Scripts.Infrastructure.Services.Factory
         GameObject CreateHud();
         GameObject CreateCharacter(Vector3 at);
         void CreateSpawner(Vector3 at, string spawnerId, MonsterTypeId monstrTypeId);
-        GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
+        Task<GameObject> CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
         LootPiece CreateLoot();
         void CreateLoot(Loot loot);
         void Cleanup();

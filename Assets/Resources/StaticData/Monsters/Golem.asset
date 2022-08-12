@@ -20,4 +20,8 @@ MonoBehaviour:
   MaxLoot: 9
   EffectiveDistance: 2
   Cleavage: 1
-  Prefab: {fileID: 2504676967194391221, guid: fef8ee76ba818f84b81b11da6bda5ddf, type: 3}
+  PrefabReference:
+    m_AssetGUID: fef8ee76ba818f84b81b11da6bda5ddf
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

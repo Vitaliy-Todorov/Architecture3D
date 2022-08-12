@@ -39,9 +39,9 @@ namespace Scrips.Logic.EnemySpawner
                 Spawn();
         }
 
-        private void Spawn()
+        private async void Spawn()
         {
-             GameObject monstr = _factory.
+             GameObject monstr = await _factory.
                 CreateMonster(_monsterTypeId, transform);
             _enemyDeath = monstr.GetComponent<EnemyDeath>();
             _enemyDeath.Happened += Slay;
